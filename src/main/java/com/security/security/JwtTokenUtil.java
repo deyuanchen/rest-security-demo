@@ -94,6 +94,10 @@ public class JwtTokenUtil implements Serializable {
         return claims;
     }
 
+    /**
+     * 过去时间
+     * @return
+     */
     private Date generateExpirationDate() {
         return new Date(System.currentTimeMillis() + expiration * 1000);
     }
@@ -129,6 +133,7 @@ public class JwtTokenUtil implements Serializable {
         claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
         claims.put(CLAIM_KEY_AUDIENCE, generateAudience(device));
         claims.put(CLAIM_KEY_CREATED, new Date());
+        claims.put("exp", 1);
         return generateToken(claims);
     }
 
